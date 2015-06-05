@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from random import randint
 
 board = []
@@ -20,15 +21,18 @@ def random_col(board):
 
 ship_row = random_row(board)
 ship_col = random_col(board)
-print ship_row
-print ship_col
+#print ship_row
+#print ship_col
 
 # Everything from here on should go in your for loop!
 # Be sure to indent four spaces!
 for turn in range(4):
+    print ""
     print "Turn", turn + 1
-    guess_row = int(raw_input("Guess Row:"))
-    guess_col = int(raw_input("Guess Col:"))
+    turns_left = len(range(4)) - turn - 1
+    print "You have {0} turns left".format(turns_left)
+    guess_row = int(raw_input("Guess Row: "))
+    guess_col = int(raw_input("Guess Col: "))
 
     if guess_row == ship_row and guess_col == ship_col:
         print "Congratulations! You sunk my battleship!"
@@ -41,7 +45,7 @@ for turn in range(4):
         else:
             print "You missed my battleship!"
             board[guess_row][guess_col] = "X"
+        print ""
+        print_board(board)
         if turn ==3:
             print "Game Over"
-        # Print (turn + 1) here!
-        print_board(board)
